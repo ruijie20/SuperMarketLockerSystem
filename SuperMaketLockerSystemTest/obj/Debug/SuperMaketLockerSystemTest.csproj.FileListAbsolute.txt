@@ -1,0 +1,9 @@
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\bin\Debug\SuperMaketLockerSystemTest.dll
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\bin\Debug\SuperMaketLockerSystemTest.pdb
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\bin\Debug\nunit.framework.dll
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\bin\Debug\SuperMarketLockerSystem.dll
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\bin\Debug\SuperMarketLockerSystem.pdb
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\bin\Debug\nunit.framework.xml
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\obj\Debug\SuperMaketLockerSystemTest.csprojResolveAssemblyReference.cache
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\obj\Debug\SuperMaketLockerSystemTest.dll
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMaketLockerSystemTest\obj\Debug\SuperMaketLockerSystemTest.pdb

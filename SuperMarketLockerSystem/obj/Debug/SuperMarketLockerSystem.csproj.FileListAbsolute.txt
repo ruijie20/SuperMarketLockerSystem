@@ -1,0 +1,5 @@
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\bin\Debug\SuperMarketLockerSystem.dll
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\bin\Debug\SuperMarketLockerSystem.pdb
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\obj\Debug\SuperMarketLockerSystem.csprojResolveAssemblyReference.cache
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\obj\Debug\SuperMarketLockerSystem.dll
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\obj\Debug\SuperMarketLockerSystem.pdb
