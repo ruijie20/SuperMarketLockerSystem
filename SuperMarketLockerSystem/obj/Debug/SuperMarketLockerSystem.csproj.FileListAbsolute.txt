@@ -3,3 +3,5 @@ C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\S
 C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\obj\Debug\SuperMarketLockerSystem.csprojResolveAssemblyReference.cache
 C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\obj\Debug\SuperMarketLockerSystem.dll
 C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\obj\Debug\SuperMarketLockerSystem.pdb
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\bin\Debug\nunit.framework.dll
+C:\Users\rjhuang\documents\visual studio 2012\Projects\SuperMarketLockerSystem\SuperMarketLockerSystem\bin\Debug\nunit.framework.xml
