@@ -91,17 +91,24 @@ namespace SuperMaketLockerSystemTest
             Assert.Null(bag);
         }
         
+        
         [Test]
         public void should_return_error_message_when_lockers_are_full()
         {
+            var lockerSize = 10;
             var robot = new Robot(1);
-            var firstBag = new Bag();
-            var secondBag = new Bag();
+       
+            for (int i = 0; i < lockerSize; i++)
+            {
+                robot.Store(new Bag());
+            }
+            var anotherBag = new Bag();
 
-            robot.Store(firstBag);
 
-            var ex = Assert.Throws<ArgumentException>(() => robot.Store(secondBag));
+            var ex = Assert.Throws<ArgumentException>(() => robot.Store(anotherBag));
             Assert.That(ex.Message, Is.EqualTo("The lockers are full!"));
         }
+
+
     }
 }

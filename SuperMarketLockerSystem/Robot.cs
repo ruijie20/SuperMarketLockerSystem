@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SuperMarketLockerSystem
 {
@@ -20,30 +21,20 @@ namespace SuperMarketLockerSystem
 
         public Ticket Store(Bag bag)
         {
+            Ticket ticket = null;
             for (int num = 0; num < lockers.Count; num++)
             {
-                if (!lockers[num].isFull)
-                {
-                    var ticket = lockers[num].Store(bag);
-                    currentLokerNum++;
-                    return ticket;
-                }
+                if (lockers[num].IsFull)
+                    throw new ArgumentException("The lockers are full!");
+                else
+                    ticket = lockers[num].Store(bag);
             }
-            throw new ArgumentException("The lockers are full!");
+            return ticket;
         }
 
         public Bag Pick(Ticket ticket)
         {
-            foreach (Locker locker in lockers)
-            {
-                Bag bag = locker.Pick(ticket);
-                if (bag != null)
-                {
-                    currentLokerNum--;
-                    return bag;
-                }
-            }
-            return null;
+            return lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
         }
     }
 }

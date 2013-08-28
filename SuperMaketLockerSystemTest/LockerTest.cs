@@ -37,8 +37,13 @@ namespace SuperMaketLockerSystemTest
         [Test]
         public void should_get_locker_is_full_message_when_locker_is_full()
         {
+            var lockerSize = 10;
+            for (int i = 0; i < lockerSize; i++)
+            {
+                locker.Store(new Bag());
+            }
+
             var anotherBag = new Bag();
-            locker.Store(bag);
 
             var ex = Assert.Throws<ArgumentException>(() => locker.Store(anotherBag));
             Assert.That(ex.Message, Is.EqualTo("The locker is full!"));
@@ -82,6 +87,18 @@ namespace SuperMaketLockerSystemTest
             locker.Pick(ticket);
             var secondTicket = locker.Store(secondBag);
 
+            Assert.NotNull(secondTicket);
+        }
+        [Test]
+        public void should_store_multi_bags_into_boxes_of_locker()
+        {
+            var firstBag = new Bag();
+            var secondBag = new Bag();
+
+            var firstTicket = locker.Store(firstBag);
+            var secondTicket = locker.Store(secondBag);
+
+            Assert.NotNull(firstTicket);
             Assert.NotNull(secondTicket);
         }
 

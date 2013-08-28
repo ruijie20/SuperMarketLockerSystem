@@ -6,16 +6,21 @@ namespace SuperMarketLockerSystem
 {
     public class Locker
     {
-        private Dictionary<Ticket, Bag> bags = new Dictionary<Ticket, Bag>();
-        public bool isFull = false;
+        private Dictionary<Ticket, Bag> boxes = new Dictionary<Ticket, Bag>();
+        private int capacity = 10;
+
+        public bool IsFull
+        {
+            get { return capacity <= 0; } 
+        }
 
         public Ticket Store(Bag bag)
         {
-            if (!isFull)
+            if (capacity > 0)
             {
                 Ticket ticket = new Ticket();
-                bags.Add(ticket, bag);
-                isFull = true;
+                boxes.Add(ticket, bag);
+                capacity--;
                 return ticket;
             }
             throw new ArgumentException("The locker is full!");
@@ -23,11 +28,11 @@ namespace SuperMarketLockerSystem
 
         public Bag Pick(Ticket ticket)
         {
-            if (bags.ContainsKey(ticket))
+            if (boxes.ContainsKey(ticket))
             {
-                var bag = bags[ticket];
-                bags.Remove(ticket);
-                isFull = false;
+                var bag = boxes[ticket];
+                boxes.Remove(ticket);
+                capacity++;
                 return bag;
             }
             return null;
