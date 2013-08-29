@@ -7,29 +7,28 @@ namespace SuperMarketLockerSystem
     public class Robot
     {
         private List<Locker> lockers = new List<Locker>();
-        private int currentLokerNum = 0;
         private int lockerCount;
 
-        public Robot(int lockerCount)
+        public Robot(List<Locker> managedLockers)
         {
-            lockerCount = lockerCount;
-            for (int num = 0; num < lockerCount; num++)
+            for (int i = 0; i < managedLockers.Count; i++)
             {
-                lockers.Add(new Locker());
+                lockers.Add(managedLockers[i]);
             }
+
+            lockerCount = managedLockers.Count;
         }
 
         public Ticket Store(Bag bag)
         {
-            Ticket ticket = null;
-            for (int num = 0; num < lockers.Count; num++)
+            for (int num = 0; num < lockerCount; num++)
             {
                 if (lockers[num].IsFull)
-                    throw new ArgumentException("The lockers are full!");
-                else
-                    ticket = lockers[num].Store(bag);
+                    continue;
+
+                return lockers[num].Store(bag);
             }
-            return ticket;
+            throw new ArgumentException("The lockers are full!");
         }
 
         public Bag Pick(Ticket ticket)
