@@ -11,9 +11,9 @@ namespace SuperMarketLockerSystem
 
         public Robot(List<Locker> managedLockers)
         {
-            for (int i = 0; i < managedLockers.Count; i++)
+            foreach (var t in managedLockers)
             {
-                lockers.Add(managedLockers[i]);
+                lockers.Add(t);
             }
 
             lockerCount = managedLockers.Count;
@@ -21,12 +21,10 @@ namespace SuperMarketLockerSystem
 
         public Ticket Store(Bag bag)
         {
-            for (int num = 0; num < lockerCount; num++)
+            Locker locker = lockers.FirstOrDefault(t => !t.IsFull);
+            if (locker != null)
             {
-                if (lockers[num].IsFull)
-                    continue;
-
-                return lockers[num].Store(bag);
+                return locker.Store(bag);
             }
             throw new ArgumentException("The lockers are full!");
         }

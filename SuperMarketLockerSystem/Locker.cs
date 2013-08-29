@@ -7,7 +7,7 @@ namespace SuperMarketLockerSystem
     public class Locker
     {
         private Dictionary<Ticket, Bag> boxes = new Dictionary<Ticket, Bag>();
-        private int capacity = 10;
+        public int capacity = 10;
 
         public bool IsFull
         {

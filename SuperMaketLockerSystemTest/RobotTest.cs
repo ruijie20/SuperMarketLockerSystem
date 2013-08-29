@@ -11,7 +11,6 @@ namespace SuperMaketLockerSystemTest
         List<Locker> lockers;
         List<Locker> oneLocker;
 
-        
         [SetUp]
         public void Init()
         {
