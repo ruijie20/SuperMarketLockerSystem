@@ -83,6 +83,11 @@ namespace SuperMaketLockerSystemTest
         public void should_circle_pick_and_store()
         {
             var robot = new Robot(oneLocker);
+            for (int i = 0; i <= oneLocker.Count; i++)
+            {
+                robot.Store(new Bag());
+            }
+
             var firstBag = new Bag();
             var secondBag = new Bag();
 
@@ -107,6 +112,19 @@ namespace SuperMaketLockerSystemTest
             var bag = robot.Pick(ticket);
             
             Assert.Null(bag);
+        }
+        
+        [Test]
+        public void should_return_null_when_pick_bag_with_used_ticket()
+        {
+            var robot = new Robot(oneLocker);
+            var firstBag = new Bag();
+
+            var ticket = robot.Store(firstBag);
+
+            robot.Pick(ticket);
+            
+            Assert.Null(robot.Pick(ticket));
         }
         
         

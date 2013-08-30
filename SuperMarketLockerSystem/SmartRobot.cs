@@ -4,32 +4,24 @@ using System.Linq;
 
 namespace SuperMarketLockerSystem
 {
-    public class SmartRobot
+    public class SmartRobot : Robot
     {
-        List<Locker> lockers = new List<Locker>();
-        private int lockerCount;
-
-        public SmartRobot(List<Locker> manageLockers)
+        public SmartRobot(List<Locker> managedLockers) : base(managedLockers)
         {
-            lockerCount = manageLockers.Count;
-            for (int i = 0; i < manageLockers.Count; i++)
-            {
-                lockers.Add(manageLockers[i]);
-            }
         }
 
-        public Ticket Store(Bag bag)
+        public override Ticket Store(Bag bag)
         {
-            var locker = lockers.OrderByDescending(t => t.capacity).First();
+            if (lockers.Count == 0)
+            {
+                throw new ArgumentException("No locker is available");
+            }
+            IOrderedEnumerable<Locker> orderByDescending = lockers.OrderByDescending(t => t.capacity);
+            var locker = orderByDescending.First();
             
             if(locker.IsFull)
                 throw new ArgumentException("The lockers are full!");
             return locker.Store(bag);
-        }
-
-        public Bag Pick(Ticket ticket)
-        {
-            return lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
         }
     }
 }

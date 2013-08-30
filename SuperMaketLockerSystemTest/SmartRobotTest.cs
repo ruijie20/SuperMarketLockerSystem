@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using SuperMarketLockerSystem;
 using Assert = NUnit.Framework.Assert;
@@ -59,12 +58,26 @@ namespace SuperMaketLockerSystemTest
             var bag4 = new Bag();
             lockers[0].Store(bag1);
             lockers[1].Store(bag2);
-            lockers[2].Store(bag3);
+            lockers[3].Store(bag3);
             var smartRobot = new SmartRobot(lockers);
             var ticket4 = smartRobot.Store(bag4);
             
-            Assert.AreSame(bag4, lockers[3].Pick(ticket4));
+            Assert.AreNotSame(bag4, lockers[0].Pick(ticket4));
+            Assert.AreNotSame(bag4, lockers[1].Pick(ticket4));
+            Assert.AreNotSame(bag4, lockers[3].Pick(ticket4));
+            Assert.AreSame(bag4, lockers[2].Pick(ticket4));
         }
+        
+        [Test]
+        public void should_return_error_message_when_robot_without_lockers()
+        {
+            List<Locker> emptyLockers = new List<Locker>();
+            var bag1 = new Bag();
+            
+            var smartRobot = new SmartRobot(emptyLockers);
 
+            var ex = Assert.Throws<ArgumentException>(() => smartRobot.Store(bag1));
+            Assert.That(ex.Message, Is.EqualTo("No locker is available"));
+        }
     }
 }
