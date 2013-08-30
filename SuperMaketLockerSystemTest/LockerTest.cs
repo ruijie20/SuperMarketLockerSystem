@@ -68,6 +68,15 @@ namespace SuperMaketLockerSystemTest
 
             Assert.Null(locker.Pick(ticket1));
         }
+        
+        [Test]
+        public void should_get_nothing_when_pick_bag_with_used_ticket()
+        {
+            var ticket = locker.Store(bag);
+            locker.Pick(ticket);
+
+            Assert.Null(locker.Pick(ticket));
+        }
 
         [Test]
         public void should_get_nothing_when_pick_bag_with_invalid_ticket()
