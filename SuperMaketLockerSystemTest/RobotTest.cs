@@ -18,10 +18,10 @@ namespace SuperMaketLockerSystemTest
             lockers = new List<Locker>();
             for (int i = 0; i < LOCKER_COUNT; i++)
             {
-                lockers.Add(new Locker());
+                lockers.Add(new Locker(10));
             }
 
-            oneLocker.Add(new Locker());
+            oneLocker.Add(new Locker(10));
         }
 
         [Test]
@@ -99,6 +99,28 @@ namespace SuperMaketLockerSystemTest
             Assert.NotNull(secondTicket);
             Assert.AreSame(firstBag, firstPickBag);
         }
+        
+        [Test]
+        public void should_store_bag_in_sequence()
+        {
+            var lockersWithOneCapcity = new List<Locker>();
+            for (int i = 0; i < LOCKER_COUNT; i++)
+            {
+                lockersWithOneCapcity.Add(new Locker(1));
+            }
+
+            lockersWithOneCapcity[0].Store(new Bag());
+            lockersWithOneCapcity[2].Store(new Bag());
+            var robot = new Robot(lockersWithOneCapcity);
+
+            var firstBag = new Bag();
+
+            var firstTicket = robot.Store(firstBag);
+
+            Assert.NotNull(firstTicket);
+            Assert.AreEqual(lockersWithOneCapcity[1].Capacity, 0);
+            Assert.AreEqual(lockersWithOneCapcity[3].Capacity, 1);
+        }
 
         [Test]
         public void should_return_null_when_pick_bag_with_incorrect_ticket()
@@ -143,6 +165,18 @@ namespace SuperMaketLockerSystemTest
 
             var ex = Assert.Throws<ArgumentException>(() => robot.Store(anotherBag));
             Assert.That(ex.Message, Is.EqualTo("The lockers are full!"));
+        }
+
+        [Test]
+        public void should_return_error_message_when_robot_without_lockers()
+        {
+            List<Locker> emptyLockers = new List<Locker>();
+            var bag1 = new Bag();
+
+            var robot = new Robot(emptyLockers);
+
+            var ex = Assert.Throws<ArgumentException>(() => robot.Store(bag1));
+            Assert.That(ex.Message, Is.EqualTo("No locker is available"));
         }
     }
 }

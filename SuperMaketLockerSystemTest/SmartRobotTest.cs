@@ -19,10 +19,10 @@ namespace SuperMaketLockerSystemTest
             lockers = new List<Locker>();
             for (int i = 0; i < LOCKER_COUNT; i++)
             {
-                lockers.Add(new Locker());
+                lockers.Add(new Locker(10));
             }
 
-            oneLocker.Add(new Locker());
+            oneLocker.Add(new Locker(10));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace SuperMaketLockerSystemTest
         }
 
         [Test]
-        public void should_store_bag_in_the_locker_which_has_most_number_of_empty_boxes()
+        public void should_store_bag_in_the_locker_which_has_largest_number_of_empty_boxes()
         {
             var bag1 = new Bag();
             var bag2 = new Bag();

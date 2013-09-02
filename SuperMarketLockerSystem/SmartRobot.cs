@@ -16,7 +16,7 @@ namespace SuperMarketLockerSystem
             {
                 throw new ArgumentException("No locker is available");
             }
-            IOrderedEnumerable<Locker> orderByDescending = lockers.OrderByDescending(t => t.capacity);
+            IOrderedEnumerable<Locker> orderByDescending = lockers.OrderByDescending(t => t.Capacity);
             var locker = orderByDescending.First();
             
             if(locker.IsFull)

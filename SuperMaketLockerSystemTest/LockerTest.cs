@@ -13,9 +13,8 @@ namespace SuperMaketLockerSystemTest
         [SetUp]
         public void Init()
         {
-            locker = new Locker();
+            locker = new Locker(10);
             bag = new Bag();
-
         }
         
         [Test]
@@ -89,6 +88,10 @@ namespace SuperMaketLockerSystemTest
         [Test]
         public void should_circle_store()
         {
+            for (int i = 0; i <= locker.Capacity; i++)
+            {
+                locker.Store(new Bag());
+            }
             var firstBag = new Bag();
             var secondBag = new Bag();
 
@@ -110,7 +113,5 @@ namespace SuperMaketLockerSystemTest
             Assert.NotNull(firstTicket);
             Assert.NotNull(secondTicket);
         }
-
-
     }
 }

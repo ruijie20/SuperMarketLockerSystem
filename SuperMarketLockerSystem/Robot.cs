@@ -18,6 +18,10 @@ namespace SuperMarketLockerSystem
 
         public virtual Ticket Store(Bag bag)
         {
+            if (lockers.Count == 0)
+            {
+                throw new ArgumentException("No locker is available");
+            }
             Locker locker = lockers.FirstOrDefault(t => !t.IsFull);
             if (locker != null)
             {
