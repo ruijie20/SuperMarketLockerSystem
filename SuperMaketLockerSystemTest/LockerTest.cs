@@ -78,14 +78,6 @@ namespace SuperMaketLockerSystemTest
         }
 
         [Test]
-        public void should_get_nothing_when_pick_bag_with_invalid_ticket()
-        {
-            var invalidTicket = new Ticket();
-
-            Assert.Null(locker.Pick(invalidTicket));
-        }
-        
-        [Test]
         public void should_circle_store()
         {
             for (int i = 0; i <= locker.Capacity; i++)
@@ -101,6 +93,7 @@ namespace SuperMaketLockerSystemTest
 
             Assert.NotNull(secondTicket);
         }
+
         [Test]
         public void should_store_multi_bags_into_boxes_of_locker()
         {

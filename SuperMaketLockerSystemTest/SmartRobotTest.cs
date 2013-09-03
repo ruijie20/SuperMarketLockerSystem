@@ -37,19 +37,6 @@ namespace SuperMaketLockerSystemTest
         }
 
         [Test]
-        public void should_pick_the_bag_when_ues_the_valid_ticket()
-        {
-            SmartRobot smartRobot = new SmartRobot(lockers);
-            Bag bag = new Bag();
-
-            Ticket ticket = smartRobot.Store(bag);
-
-            Bag bagPicked = smartRobot.Pick(ticket);
-
-            Assert.AreSame(bag, bagPicked);
-        }
-
-        [Test]
         public void should_store_bag_in_the_locker_which_has_largest_number_of_empty_boxes()
         {
             var bag1 = new Bag();
@@ -62,9 +49,9 @@ namespace SuperMaketLockerSystemTest
             var smartRobot = new SmartRobot(lockers);
             var ticket4 = smartRobot.Store(bag4);
             
-            Assert.AreNotSame(bag4, lockers[0].Pick(ticket4));
-            Assert.AreNotSame(bag4, lockers[1].Pick(ticket4));
-            Assert.AreNotSame(bag4, lockers[3].Pick(ticket4));
+            Assert.Null(lockers[0].Pick(ticket4));
+            Assert.Null(lockers[1].Pick(ticket4));
+            Assert.Null(lockers[3].Pick(ticket4));
             Assert.AreSame(bag4, lockers[2].Pick(ticket4));
         }
         
@@ -78,6 +65,23 @@ namespace SuperMaketLockerSystemTest
 
             var ex = Assert.Throws<ArgumentException>(() => smartRobot.Store(bag1));
             Assert.That(ex.Message, Is.EqualTo("No locker is available"));
+        }
+
+        [Test]
+        public void should_return_error_message_when_lockers_are_full()
+        {
+            var lockerSize = 10;
+            var robot = new Robot(oneLocker);
+
+            for (int i = 0; i < lockerSize; i++)
+            {
+                robot.Store(new Bag());
+            }
+            var anotherBag = new Bag();
+
+
+            var ex = Assert.Throws<ArgumentException>(() => robot.Store(anotherBag));
+            Assert.That(ex.Message, Is.EqualTo("The lockers are full!"));
         }
     }
 }

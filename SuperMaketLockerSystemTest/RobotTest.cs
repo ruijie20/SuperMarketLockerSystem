@@ -35,21 +35,6 @@ namespace SuperMaketLockerSystemTest
         }
 
         [Test]
-        public void should_get_two_different_tickets_when_robot_store_two_bags_in_locker()
-        {
-            var robot = new Robot(lockers);
-            var firstBag = new Bag();
-            var secondBag = new Bag();
-
-            Ticket firstTicket = robot.Store(firstBag);
-            Ticket secondTicket = robot.Store(secondBag);
-
-            Assert.NotNull(firstTicket);
-            Assert.NotNull(secondTicket);
-            Assert.AreNotSame(firstTicket, secondTicket);
-        } 
-
-        [Test]
         public void should_pick_bag_which_we_stroed_in()
         {
             var robot = new Robot(lockers);
@@ -60,23 +45,6 @@ namespace SuperMaketLockerSystemTest
             var bagPick = robot.Pick(ticket);
 
             Assert.AreSame(bagPick, bagStore);
-        }
-
-        [Test]
-        public void should_pick_different_bag_with_different_ticket()
-        {
-            var robot = new Robot(lockers);
-            var firstBag = new Bag();
-            var secondBag = new Bag();
-
-            var firstTicket = robot.Store(firstBag);
-            var secondTicket = robot.Store(secondBag);
-
-            var firstPickBag = robot.Pick(firstTicket);
-            var secondPickBag = robot.Pick(secondTicket);
-
-            Assert.AreSame(firstBag, firstPickBag);
-            Assert.AreSame(secondBag, secondPickBag);
         }
 
         [Test]
@@ -92,12 +60,11 @@ namespace SuperMaketLockerSystemTest
             var secondBag = new Bag();
 
             var firstTicket = robot.Store(firstBag);
-            var firstPickBag = robot.Pick(firstTicket);
+            robot.Pick(firstTicket);
 
             var secondTicket = robot.Store(secondBag);
 
             Assert.NotNull(secondTicket);
-            Assert.AreSame(firstBag, firstPickBag);
         }
         
         [Test]
@@ -109,15 +76,13 @@ namespace SuperMaketLockerSystemTest
                 lockersWithOneCapcity.Add(new Locker(1));
             }
 
-            lockersWithOneCapcity[0].Store(new Bag());
-            lockersWithOneCapcity[2].Store(new Bag());
             var robot = new Robot(lockersWithOneCapcity);
 
-            var firstBag = new Bag();
+            lockersWithOneCapcity[0].Store(new Bag());
+            lockersWithOneCapcity[2].Store(new Bag());
 
-            var firstTicket = robot.Store(firstBag);
+            robot.Store(new Bag());
 
-            Assert.NotNull(firstTicket);
             Assert.AreEqual(lockersWithOneCapcity[1].Capacity, 0);
             Assert.AreEqual(lockersWithOneCapcity[3].Capacity, 1);
         }
