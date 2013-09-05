@@ -10,18 +10,9 @@ namespace SuperMarketLockerSystem
         {
         }
 
-        public override Ticket Store(Bag bag)
+        protected override Locker GetLocker()
         {
-            if (lockers.Count == 0)
-            {
-                throw new ArgumentException("No locker is available");
-            }
-            IOrderedEnumerable<Locker> orderByDescending = lockers.OrderByDescending(t => t.Capacity);
-            var locker = orderByDescending.First();
-            
-            if(locker.IsFull)
-                throw new ArgumentException("The lockers are full!");
-            return locker.Store(bag);
+            return lockers.OrderByDescending(t => t.Capacity).First();
         }
     }
 }

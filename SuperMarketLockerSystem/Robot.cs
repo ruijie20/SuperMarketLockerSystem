@@ -6,7 +6,7 @@ namespace SuperMarketLockerSystem
 {
     public class Robot
     {
-        protected List<Locker> lockers = new List<Locker>();
+        protected readonly List<Locker> lockers = new List<Locker>();
 
         public Robot(List<Locker> managedLockers)
         {
@@ -16,18 +16,23 @@ namespace SuperMarketLockerSystem
             }
         }
 
-        public virtual Ticket Store(Bag bag)
+        public Ticket Store(Bag bag)
         {
             if (lockers.Count == 0)
             {
                 throw new ArgumentException("No locker is available");
             }
-            Locker locker = lockers.FirstOrDefault(t => !t.IsFull);
+            var locker = GetLocker();
             if (locker != null)
             {
                 return locker.Store(bag);
             }
             throw new ArgumentException("The lockers are full!");
+        }
+
+        protected virtual Locker GetLocker()
+        {
+            return lockers.FirstOrDefault(t => !t.IsFull);
         }
 
         public Bag Pick(Ticket ticket)
