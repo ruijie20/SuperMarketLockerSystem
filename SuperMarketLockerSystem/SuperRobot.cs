@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SuperMarketLockerSystem
 {
@@ -7,6 +8,11 @@ namespace SuperMarketLockerSystem
         public SuperRobot(List<Locker> lockers)
             : base(lockers)
         {
+        }
+
+        protected override Locker GetLocker()
+        {
+            return lockers.OrderByDescending(t => t.VacancyRate).First();
         }
     }
 }

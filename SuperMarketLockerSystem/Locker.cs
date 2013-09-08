@@ -8,15 +8,23 @@ namespace SuperMarketLockerSystem
     {
         private Dictionary<Ticket, Bag> boxes = new Dictionary<Ticket, Bag>();
         public int Capacity { get; set; }
+        private readonly int totalCapacity;
 
         public Locker(int capacity)
         {
             Capacity = capacity;
+            totalCapacity = capacity;
         }
 
         public bool IsFull
         {
             get { return Capacity <= 0; } 
+        }
+
+        public double VacancyRate
+        {
+            get { return Capacity/totalCapacity; }
+            set {}
         }
 
         public Ticket Store(Bag bag)
