@@ -4,11 +4,12 @@ using System.Linq;
 
 namespace SuperMarketLockerSystem
 {
-    public class Robot
+    public class Manager
     {
         protected readonly List<Locker> lockers = new List<Locker>();
+        protected readonly List<Robot> robots = new List<Robot>();
 
-        public Robot(List<Locker> managedLockers)
+        public Manager(List<Locker> managedLockers)
         {
             foreach (var t in managedLockers)
             {
@@ -16,11 +17,26 @@ namespace SuperMarketLockerSystem
             }
         }
 
+        public Manager(List<Robot> robotList)
+        {
+            foreach (var robot in robotList)
+            {
+                robots.Add(robot);
+            }
+        }
+
         public Ticket Store(Bag bag)
         {
             if (lockers.Count == 0)
             {
-                throw new ArgumentException("No locker is available");
+                for (var i = 0; i < robots.Count; i++)
+                {
+                    Ticket ticket = robots[i].Store(bag);
+                    if (ticket != null)
+                    {
+                        return ticket;
+                    }
+                }
             }
             var locker = GetLocker();
             if (locker != null)
@@ -38,15 +54,6 @@ namespace SuperMarketLockerSystem
         public Bag Pick(Ticket ticket)
         {
             return lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
-        }
-
-        public bool IsFull()
-        {
-            if (lockers.Count == 0)
-            {
-                return true;
-            }
-            return GetLocker() == null;
         }
     }
 }

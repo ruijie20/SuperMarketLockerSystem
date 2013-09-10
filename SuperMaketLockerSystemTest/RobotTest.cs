@@ -130,6 +130,7 @@ namespace SuperMaketLockerSystemTest
 
             var ex = Assert.Throws<ArgumentException>(() => robot.Store(anotherBag));
             Assert.That(ex.Message, Is.EqualTo("The lockers are full!"));
+            Assert.True(robot.IsFull());
         }
 
         [Test]
@@ -143,5 +144,6 @@ namespace SuperMaketLockerSystemTest
             var ex = Assert.Throws<ArgumentException>(() => robot.Store(bag1));
             Assert.That(ex.Message, Is.EqualTo("No locker is available"));
         }
+
     }
 }
