@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SuperMarketLockerSystem
 {
-    public class Locker
+    public class Locker : IBagKeeper
     {
         private Dictionary<Ticket, Bag> boxes = new Dictionary<Ticket, Bag>();
         public int Capacity { get; set; }
@@ -16,15 +16,14 @@ namespace SuperMarketLockerSystem
             totalCapacity = capacity;
         }
 
-        public bool IsFull
+        public bool IsFull()
         {
-            get { return Capacity <= 0; } 
+             return Capacity <= 0; 
         }
 
         public double VacancyRate
         {
-            get { return Capacity/totalCapacity; }
-            set {}
+            get { return totalCapacity != 0 ? Capacity/(double) totalCapacity : 0; }
         }
 
         public Ticket Store(Bag bag)

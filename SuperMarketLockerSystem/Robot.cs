@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SuperMarketLockerSystem
 {
-    public class Robot
+    public class Robot : IBagKeeper
     {
         protected readonly List<Locker> lockers = new List<Locker>();
 
@@ -32,7 +32,7 @@ namespace SuperMarketLockerSystem
 
         protected virtual Locker GetLocker()
         {
-            return lockers.FirstOrDefault(t => !t.IsFull);
+            return lockers.FirstOrDefault(t => !t.IsFull());
         }
 
         public Bag Pick(Ticket ticket)

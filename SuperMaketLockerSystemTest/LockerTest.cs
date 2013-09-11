@@ -49,6 +49,22 @@ namespace SuperMaketLockerSystemTest
         }
 
         [Test]
+        public void should_get_vacancy_rate()
+        {
+            locker.Store(new Bag());
+
+            Assert.AreEqual(0.9, locker.VacancyRate);
+        }
+        
+        [Test]
+        public void should_vacancy_rate_be_0_when_with_no_locker()
+        {
+            var lockerWithoutBoxes = new Locker(0);
+
+            Assert.AreEqual(0, lockerWithoutBoxes.VacancyRate);
+        }
+
+        [Test]
         public void should_get_correct_bag_when_pick_bag_with_ticket()
         {
             var ticket = locker.Store(bag);

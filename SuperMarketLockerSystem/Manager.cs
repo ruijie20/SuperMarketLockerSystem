@@ -6,54 +6,38 @@ namespace SuperMarketLockerSystem
 {
     public class Manager
     {
-        protected readonly List<Locker> lockers = new List<Locker>();
-        protected readonly List<Robot> robots = new List<Robot>();
+        private readonly List<IBagKeeper> bagKeepers = new List<IBagKeeper>();
 
-        public Manager(List<Locker> managedLockers)
+        public Manager(List<IBagKeeper> bagKeeperList)
         {
-            foreach (var t in managedLockers)
+            foreach (var bagKeeper in bagKeeperList)
             {
-                lockers.Add(t);
-            }
-        }
-
-        public Manager(List<Robot> robotList)
-        {
-            foreach (var robot in robotList)
-            {
-                robots.Add(robot);
+                bagKeepers.Add(bagKeeper);
             }
         }
 
         public Ticket Store(Bag bag)
         {
-            if (lockers.Count == 0)
+            if (bagKeepers.Count == 0)
             {
-                for (var i = 0; i < robots.Count; i++)
-                {
-                    Ticket ticket = robots[i].Store(bag);
-                    if (ticket != null)
-                    {
-                        return ticket;
-                    }
-                }
+                throw new ArgumentException("No locker or robot available");
             }
-            var locker = GetLocker();
-            if (locker != null)
+            var bagKeeper = GetBagKeeper();
+            if (bagKeeper != null)
             {
-                return locker.Store(bag);
+                return bagKeeper.Store(bag);
             }
-            throw new ArgumentException("The lockers are full!");
+            throw new ArgumentException("The manager is full!");
         }
 
-        protected virtual Locker GetLocker()
+        protected IBagKeeper GetBagKeeper()
         {
-            return lockers.FirstOrDefault(t => !t.IsFull);
+            return bagKeepers.FirstOrDefault(t => !t.IsFull());
         }
 
         public Bag Pick(Ticket ticket)
         {
-            return lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
+            return bagKeepers.Select(bagKeeper => bagKeeper.Pick(ticket)).FirstOrDefault(bag => bag != null);
         }
     }
 }

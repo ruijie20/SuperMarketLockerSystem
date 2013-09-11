@@ -11,7 +11,7 @@ namespace SuperMarketLockerSystem
 
         protected override Locker GetLocker()
         {
-            return lockers.OrderByDescending(t => t.Capacity).First();
+            return lockers.OrderByDescending(t => t.Capacity).FirstOrDefault(t => !t.IsFull());
         }
     }
 }
