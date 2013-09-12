@@ -5,12 +5,12 @@ namespace SuperMarketLockerSystem
 {
     public class SuperRobot : Robot
     {
-        public SuperRobot(List<Locker> lockers)
+        public SuperRobot(List<IBagKeeper> lockers)
             : base(lockers)
         {
         }
 
-        protected override Locker GetLocker()
+        protected override IBagKeeper GetLocker()
         {
             return lockers.OrderByDescending(t => t.VacancyRate).FirstOrDefault(t => !t.IsFull());
         }

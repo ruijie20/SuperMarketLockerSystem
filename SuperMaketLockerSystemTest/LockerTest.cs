@@ -7,7 +7,7 @@ namespace SuperMaketLockerSystemTest
     [TestFixture]
     public class LockerTest
     {
-        private Locker locker;
+        private IBagKeeper locker;
         private Bag bag;
 
         [SetUp]

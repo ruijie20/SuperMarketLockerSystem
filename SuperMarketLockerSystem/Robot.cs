@@ -6,9 +6,9 @@ namespace SuperMarketLockerSystem
 {
     public class Robot : IBagKeeper
     {
-        protected readonly List<Locker> lockers = new List<Locker>();
+        protected readonly List<IBagKeeper> lockers = new List<IBagKeeper>();
 
-        public Robot(List<Locker> managedLockers)
+        public Robot(List<IBagKeeper> managedLockers)
         {
             foreach (var t in managedLockers)
             {
@@ -30,7 +30,7 @@ namespace SuperMarketLockerSystem
             throw new ArgumentException("The lockers are full!");
         }
 
-        protected virtual Locker GetLocker()
+        protected virtual IBagKeeper GetLocker()
         {
             return lockers.FirstOrDefault(t => !t.IsFull());
         }
@@ -39,6 +39,9 @@ namespace SuperMarketLockerSystem
         {
             return lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
         }
+
+        public int Capacity { get; private set; }
+        public double VacancyRate { get; private set; }
 
         public bool IsFull()
         {

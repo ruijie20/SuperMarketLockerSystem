@@ -9,8 +9,8 @@ namespace SuperMaketLockerSystemTest
     public class ManagerTest
     {
         private List<IBagKeeper> lockerListForManager;
-        private List<Locker> lockerListForRobot;
-        private Locker locker;
+        private List<IBagKeeper> lockerListForRobot;
+        private IBagKeeper locker;
         private Manager manager;
         private Bag bag;
         private Bag bag2;
@@ -64,7 +64,7 @@ namespace SuperMaketLockerSystemTest
         public void should_get_ticket_when_manage_robots_to_store_bag()
         {
             //Given
-            lockerListForRobot = new List<Locker>();
+            lockerListForRobot = new List<IBagKeeper>();
             lockerListForRobot.Add(locker);
 
             robot = new Robot(lockerListForRobot);
@@ -84,7 +84,7 @@ namespace SuperMaketLockerSystemTest
         public void should_get_ticket_when_manage_smart_robots_to_store_bag()
         {
             //Given
-            lockerListForRobot = new List<Locker>();
+            lockerListForRobot = new List<IBagKeeper>();
             lockerListForRobot.Add(locker);
 
             robot = new SmartRobot(lockerListForRobot);
@@ -106,8 +106,8 @@ namespace SuperMaketLockerSystemTest
             //Given
             var bagKeepers = new List<IBagKeeper>();
             locker = new Locker(1);
-            Locker lockerForManager = new Locker(1);
-            lockerListForRobot = new List<Locker>();
+            IBagKeeper lockerForManager = new Locker(1);
+            lockerListForRobot = new List<IBagKeeper>();
             lockerListForRobot.Add(locker);
             robot = new Robot(lockerListForRobot);
             bagKeepers.Add(lockerForManager);
@@ -130,12 +130,12 @@ namespace SuperMaketLockerSystemTest
         {
             //Given
             var bagKeepers = new List<IBagKeeper>();
-            Locker lockerForManager = new Locker(1);
-            lockerListForRobot = new List<Locker>();
+            IBagKeeper lockerForManager = new Locker(1);
+            lockerListForRobot = new List<IBagKeeper>();
             lockerListForRobot.Add(new Locker(1));
-            var lockerListForSmartRobot = new List<Locker>();
+            var lockerListForSmartRobot = new List<IBagKeeper>();
             lockerListForSmartRobot.Add(new Locker(1));
-            var lockerListForSuperRobot = new List<Locker>();
+            var lockerListForSuperRobot = new List<IBagKeeper>();
             lockerListForSuperRobot.Add(new Locker(1));
             robot = new Robot(lockerListForRobot);
             var smartRobot = new SmartRobot(lockerListForSmartRobot);

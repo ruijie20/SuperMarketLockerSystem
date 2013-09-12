@@ -9,14 +9,14 @@ namespace SuperMaketLockerSystemTest
     public class SmartRobotTest
     {
         private int LOCKER_COUNT = 4;
-        List<Locker> lockers;
-        List<Locker> oneLocker;
+        List<IBagKeeper> lockers;
+        List<IBagKeeper> oneLocker;
 
         [SetUp]
         public void Init()
         {
-            oneLocker = new List<Locker>();
-            lockers = new List<Locker>();
+            oneLocker = new List<IBagKeeper>();
+            lockers = new List<IBagKeeper>();
             for (int i = 0; i < LOCKER_COUNT; i++)
             {
                 lockers.Add(new Locker(10));
@@ -58,7 +58,7 @@ namespace SuperMaketLockerSystemTest
         [Test]
         public void should_return_error_message_when_robot_without_lockers()
         {
-            List<Locker> emptyLockers = new List<Locker>();
+            List<IBagKeeper> emptyLockers = new List<IBagKeeper>();
             var bag1 = new Bag();
             
             var smartRobot = new SmartRobot(emptyLockers);

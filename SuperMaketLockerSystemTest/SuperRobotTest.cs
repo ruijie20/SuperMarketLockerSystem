@@ -12,7 +12,7 @@ namespace SuperMaketLockerSystemTest
             var locker1 = new Locker(3);
             var locker2 = new Locker(2);
             var superRobot = new SuperRobot(
-                new List<Locker>
+                new List<IBagKeeper>
                     {
                         locker1,
                         locker2
